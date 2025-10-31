@@ -37,74 +37,82 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <h2>Active Directory IT Support Lab</h2>
 
 <p align="center">
-  <img src="images/step1-ad.png" height="80%" width="80%" alt="Step 1 - Install Active Directory"/>
-</p>
-<p>
-Step 1: Installing Active Directory Domain Services: Logged into DC-1 → Installed Active Directory Domain Services → Promoted it as a Domain Controller (DC) and created a new forest named "mydomain.com" → Restarted the server and logged back in as mydomain.com\labuser.
-</p>
+  <img width="694" height="509" alt="ad config" src="https://github.com/user-attachments/assets/799ce933-665a-48a2-b26a-53402b2876f7" />
 
-<br />
-
-<p>
-  <img src="images/step2-ad.png" height="80%" width="80%" alt="Step 2 - Create Domain Admin"/>
 </p>
 <p>
-Step 2: Created a Domain Admin Account → In Active Directory Users and Computers (ADUC), created an Organizational Units (OUs) named "_EMPLOYEES" and "_ADMINS" → Added a new employee "Jane Doe" → Added "jane_admin" to the <b>Domain Admins</b> group → Logged out of DC-1 and logged back in as "mydomain.com\jane_admin".
+Step 1: Install Active Directory Domain Services: Log into DC-1 → Install Active Directory Domain Services → Promote it to a Domain Controller (DC) and create a new forest named "mydomain.com" → Restart the server and log back into it as mydomain.com\(Your_Username_Here).
 </p>
 
 <br />
 
 <p>
-  <img src="images/step3-ad.png" height="80%" width="80%" alt="Step 3 - Join Client to Domain"/>
+  <img width="691" height="477" alt="ad config 2" src="https://github.com/user-attachments/assets/12909727-93ad-4028-9280-a35ba5e41b34" />
+
 </p>
 <p>
-Step 3: Joined Client-1 to the Domain → Restarted Client-1 → Logged in as the local admin "labuser" and joined it to mydomain.com → Verified in ADUC that Client-1 appears under the domain → Created a new OU named "_CLIENTS" and moved Client-1 into it.
+Step 2: Create a Domain Admin Account → In Active Directory Users and Computers (ADUC), create Organizational Units (OU) named "_EMPLOYEES" and "_ADMINS" → Add a new employee "Jane Doe" and add "kevin_admin" to the <b>Domain Admins</b> group → Log out of DC-1 and log back in as "mydomain.com\kevin_admin".
+</p>
+
+<br />
+
+<p>
+  <img width="691" height="483" alt="ad 3" src="https://github.com/user-attachments/assets/fc8e144e-4f82-4071-8723-6b4093395fd4" />
+
+</p>
+<p>
+Step 3: Join Client-1 to the Domain → Restart Client-1 → Log in as the local admin and join it to mydomain.com → Verify in ADUC that Client-1 appears under the domain → Create a new OU named "_CLIENTS" and move Client-1 into it.
 </p>
 
 <br />
 
 
 <p>
-  <img src="images/step4-ad.png" height="80%" width="80%" alt="Step 4 - Enable Remote Desktop"/>
+  <img width="1105" height="855" alt="ad4" src="https://github.com/user-attachments/assets/47bd2879-7d02-495a-86ee-7fad770698ad" />
+
 </p>
 <p>
-Step 4: Enable Remote Desktop for Domain Users → Powered on DC-1 and Client-1 → Logged into Client-1 as <code>mydomain.com\jane_admin</code> → Opened System Properties → Enabled Remote Desktop access → Allowed <b>Domain Users</b> access → Confirmed non-administrative users can now remotely connect.
+Step 4: Enable Remote Desktop for Domain Users → Power on DC-1 and Client-1 → Log into Client-1 as <code>mydomain.com\kevin_admin</code> → Open System Properties and enable Remote Desktop access → Allow <b>Domain Users</b> access and confirm non-administrative users can now remotely connect.
 </p>
 
 <br />
 
 <p>
-  <img src="images/step5-ad.png" height="80%" width="80%" alt="Step 5 - Create Multiple Users"/>
+  <img width="692" height="485" alt="ad5" src="https://github.com/user-attachments/assets/1baf15e2-4f01-4315-b87f-48aa167a3f0e" />
+
 </p>
 <p>
-Step 5: Created Multiple Domain Users → Logged into DC-1 as "jane_admin" → Opened <b>PowerShell ISE</b> as Administrator → Ran a script to bulk create multiple new users in the "_EMPLOYEES" OU → Verifed the new accounts in ADUC → Attempted to log into Client-1 using one of the new user accounts.
+Step 5: Create multiple Domain Users → Log into DC-1 as an admin → Open <b>PowerShell ISE</b> as Administrator to run a script to bulk create multiple new users in the "_EMPLOYEES" OU → Verify the new accounts in ADUC → Attempt to log into Client-1 using one of the new user accounts.
 </p>
 
 <br />
 
 <p>
-  <img src="images/step6-ad.png" height="80%" width="80%" alt="Step 6 - Account Lockout Policy"/>
+  <img width="1479" height="893" alt="ad 6" src="https://github.com/user-attachments/assets/f40b7844-a28b-4bc0-b212-ac657c614b45" />
+
 </p>
 <p>
-Step 6: Simulated and Configured Account Lockouts → On DC-1, picked a random user and attemptted to log in 5 times using an incorrect password → Opened Group Policy Management and configured the Account Lockout Threshold to 5 attempts → Retried logging in 7 times with a bad password → Observed that the account is now locked → Unlocked the account in ADUC, I reset the password, and confirmed successful login.
+Step 6: Simulate and Configure Account Lockouts → On DC-1, pick a random user and attempt to log in 5 times using an incorrect password → Open Group Policy Management and configure the Account Lockout Threshold to 5 attempts → Retry logging in 5 times with a bad password → Observe that the account is now locked → Unlock the account in ADUC, reset the password, and confirm a successful login.
 </p>
 
 <br />
 
 <p>
-  <img src="images/step7-ad.png" height="80%" width="80%" alt="Step 7 - Enable Disable Accounts"/>
+  <img width="1075" height="661" alt="ad 7" src="https://github.com/user-attachments/assets/88eee4ce-72db-47f3-a648-b71403f5f466" />
+
 </p>
 <p>
-Step 7: Enabled and Disabled Accounts → On DC-1, disabled a test user account in ADUC → Attempted to log in and observed the “account disabled” message → Re-enabled the account and verified successful login.
+Step 7: Enable and Disable Accounts → On DC-1, disable a test user account in ADUC → Attempt to log in and observe the “account disabled” message → Re-enable the account and verify a successful login.
 </p>
 
 <br />
 
 <p>
-  <img src="images/step8-ad.png" height="80%" width="80%" alt="Step 8 - Observe Logs"/>
+  <img width="1592" height="955" alt="ad 8" src="https://github.com/user-attachments/assets/f009565d-57da-462e-aa26-7dad21d1663f" />
+
 </p>
 <p>
-Step 8: Reviewed Security and Event Logs → Opened Event Viewer on both DC-1 and Client-1 → Observed authentication attempts, account lockouts, and system log activity → Correlated log entries to user actions for troubleshooting and auditing purposes.
+Step 8: Review Security and Event Logs → Open Event Viewer on both DC-1 and Client-1 → Observe authentication attempts, account lockouts, and system log activity → Correlate log entries to user actions for troubleshooting and auditing purposes.
 </p>
 
 <br />
