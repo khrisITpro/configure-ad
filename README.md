@@ -5,11 +5,6 @@
 <h1>Building a Simulated On-Premises Active Directory Infrastructure Using Azure Virtual Machines</h1>
 This tutorial outlines the implementation of on-premises Active Directory within Azure Virtual Machines.<br />
 
-
-<h2>Video Demonstration</h2>
-
- [![Watch the video](https://img.youtube.com/vi/AB0p-qio1Sc/0.jpg)](https://www.youtube.com/watch?v=AB0p-qio1Sc)
-
 <h2>Environments and Technologies Used</h2>
 
 - Microsoft Azure (Virtual Machines/Compute)
